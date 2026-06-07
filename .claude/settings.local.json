@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"c:\\\\Users\\\\ammar\\\\Desktop\\\\WEB\\\\Work\\\\nexus-properties\\\\src\\\\app\\\\[locale]\\\\projects\\\\[slug]\")",
+      "Bash(Get-ChildItem -Recurse \"c:\\\\Users\\\\ammar\\\\Desktop\\\\WEB\\\\Work\\\\nexus-properties\\\\src\\\\app\")",
+      "Bash(Select-Object FullName)",
+      "Bash(curl -s http://localhost:3000/ar)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\);process.stdin.on\\('end',\\(\\)=>{console.log\\('Arabic nav:',d.includes\\('الوظائف'\\)?'YES':'NO'\\);console.log\\('Arabic home:',d.includes\\('الرئيسية'\\)?'YES':'NO'\\);console.log\\('/ar links:',d.includes\\('href=\\\\\"/ar/'\\)?'YES':'NO'\\)}\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ammar\\Desktop\\WEB\\Work\\nexus-properties\\src\\app\\[locale]\\projects"
+    ]
+  }
+}
