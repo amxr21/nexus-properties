@@ -1,23 +1,38 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { FooterLinkList } from '@/components/ui/FooterLinkList';
-import {
-  footerQuickLinks,
-  footerServices,
-  footerLegal,
-  footerSocial,
-  images,
-} from '@/lib/content';
+import { footerSocial, images } from '@/lib/content';
 
 export function Footer() {
   const t = useTranslations('Footer');
+  const locale = useLocale();
+  const base = `/${locale}`;
+
+  const quickLinks = [
+    { label: t('link1'), href: base },
+    { label: t('link2'), href: `${base}#about` },
+    { label: t('link3'), href: `${base}/properties` },
+    { label: t('link4'), href: `${base}/services` },
+    { label: t('link5'), href: `${base}/careers` },
+    { label: t('link6'), href: `${base}/reports` },
+    { label: t('link7'), href: `${base}/blog` },
+    { label: t('link8'), href: `${base}/contact` },
+  ];
+
+  const legalLinks = [
+    { label: t('legal1'), href: `${base}/privacy-policy` },
+    { label: t('legal2'), href: `${base}/terms` },
+    { label: t('legal3'), href: `${base}/cookie-policy` },
+    { label: t('legal4'), href: `${base}/disclaimer` },
+    { label: t('legal5'), href: `${base}/accessibility` },
+    { label: t('legal6'), href: `${base}/sitemap-page` },
+  ];
 
   return (
     <footer aria-label="Site footer" className="relative overflow-hidden">
-      {/* Background photo — no color overlay */}
       <Image
         src={images.footerBg}
         alt=""
@@ -59,20 +74,18 @@ export function Footer() {
               </ul>
             </div>
 
-            <FooterLinkList
-              heading={t('quickLinksHeading')}
-              items={footerQuickLinks.map(key => ({ label: t(key.replace('Footer.', '') as Parameters<typeof t>[0]) }))}
-            />
+            <FooterLinkList heading={t('quickLinksHeading')} items={quickLinks} />
 
+            {/* Services links pointing to /services */}
             <FooterLinkList
               heading={t('servicesHeading')}
-              items={footerServices.map(key => ({ label: t(key.replace('Footer.', '') as Parameters<typeof t>[0]) }))}
+              items={[
+                t('service1'), t('service2'), t('service3'), t('service4'),
+                t('service5'), t('service6'), t('service7'), t('service8'),
+              ].map(label => ({ label, href: `${base}/services` }))}
             />
 
-            <FooterLinkList
-              heading={t('legalHeading')}
-              items={footerLegal.map(key => ({ label: t(key.replace('Footer.', '') as Parameters<typeof t>[0]) }))}
-            />
+            <FooterLinkList heading={t('legalHeading')} items={legalLinks} />
 
             <FooterLinkList
               heading={t('followHeading')}

@@ -1,15 +1,33 @@
-'use client';
-
-import { useTranslations, useLocale } from 'next-intl';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
+import { ArrowRight } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/ui/Container';
 
-export default function NotFound() {
-  const t = useTranslations('NotFound');
-  const locale = useLocale();
-  const Arrow = locale === 'ar' ? ArrowLeft : ArrowRight;
+export default async function NotFound() {
+  // not-found pages don't receive params, so we can't reliably get locale here.
+  // We use getTranslations with a default so the page always renders.
+  let t: Awaited<ReturnType<typeof getTranslations<'NotFound'>>>;
+  try {
+    t = await getTranslations('NotFound');
+  } catch {
+    // Fallback if called outside locale context
+    return (
+      <html lang="en">
+        <body>
+          <main className="min-h-screen flex items-center justify-center bg-white">
+            <div className="text-center p-12">
+              <div className="text-[8rem] font-light text-gray-100 leading-none">404</div>
+              <h1 className="text-2xl font-light text-gray-800 mt-4">Page Not Found</h1>
+              <a href="/en" className="mt-8 inline-block bg-navy px-8 py-3 text-sm text-white uppercase tracking-widest hover:bg-navy/85 transition-colors">
+                Back to Home
+              </a>
+            </div>
+          </main>
+        </body>
+      </html>
+    );
+  }
 
   return (
     <>
@@ -29,14 +47,14 @@ export default function NotFound() {
             </p>
             <div className="flex flex-col items-center gap-3 sm:flex-row mt-2">
               <a
-                href={`/${locale}`}
+                href="/en"
                 className="inline-flex items-center gap-2 bg-navy px-8 py-3.5 text-[9px] font-bold tracking-[0.24em] text-white uppercase hover:bg-navy/85 transition-colors"
               >
                 {t('homeBtn')}
-                <Arrow size={12} />
+                <ArrowRight size={12} />
               </a>
               <a
-                href={`/${locale}/properties`}
+                href="/en/properties"
                 className="inline-flex items-center gap-2 border border-navy/25 px-8 py-3.5 text-[9px] font-bold tracking-[0.24em] text-navy uppercase hover:border-navy hover:bg-navy/5 transition-colors"
               >
                 {t('propertiesBtn')}
