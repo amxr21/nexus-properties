@@ -8,6 +8,18 @@ import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
 
+interface ProjectDetails {
+  location: string;
+  type: string;
+  units: string;
+  size: string;
+  floors: string;
+  status: string;
+  features: string[];
+  amenities: string[];
+  highlights: string[];
+}
+
 interface Props {
   titleKey: string;
   metaKey: string;
@@ -22,26 +34,14 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tProj = useTranslations('OngoingProjects') as any;
   const tp    = useTranslations('ProjectPage');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tDet  = useTranslations('ProjectDetails') as any;
   const locale = useLocale();
 
-  // useMessages gives the raw JSON — the only reliable way to read array values in next-intl 4.x
+  // Read ALL project details from raw messages — useTranslations cannot handle arrays
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const messages = useMessages() as any;
-  const rawDet   = hasDetails ? messages?.ProjectDetails?.[slug] : null;
-
-  const details = hasDetails && rawDet ? {
-    location:   tDet(`${slug}.location`)  as string,
-    type:       tDet(`${slug}.type`)      as string,
-    units:      tDet(`${slug}.units`)     as string,
-    size:       tDet(`${slug}.size`)      as string,
-    floors:     tDet(`${slug}.floors`)    as string,
-    status:     tDet(`${slug}.status`)    as string,
-    features:   (rawDet.features   ?? []) as string[],
-    amenities:  (rawDet.amenities  ?? []) as string[],
-    highlights: (rawDet.highlights ?? []) as string[],
-  } : null;
+  const raw: ProjectDetails | null = hasDetails
+    ? (messages?.ProjectDetails?.[slug] ?? null)
+    : null;
 
   return (
     <>
@@ -93,12 +93,12 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   <div className="h-px flex-1 bg-line" />
                 </div>
 
-                {details && details.features.length > 0 && (
+                {raw && Array.isArray(raw.features) && raw.features.length > 0 && (
                   <Reveal delay={80}>
                     <div>
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('features')}</p>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {details.features.map((f, i) => (
+                        {raw.features.map((f, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-teal" />
                             <span className="text-[13px] text-charcoal/70">{f}</span>
@@ -109,12 +109,12 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   </Reveal>
                 )}
 
-                {details && details.amenities.length > 0 && (
+                {raw && Array.isArray(raw.amenities) && raw.amenities.length > 0 && (
                   <Reveal delay={120}>
                     <div>
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('amenities')}</p>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {details.amenities.map((a, i) => (
+                        {raw.amenities.map((a, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-navy" />
                             <span className="text-[13px] text-charcoal/70">{a}</span>
@@ -125,12 +125,12 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   </Reveal>
                 )}
 
-                {details && details.highlights.length > 0 && (
+                {raw && Array.isArray(raw.highlights) && raw.highlights.length > 0 && (
                   <Reveal delay={160}>
                     <div className="border border-line p-8">
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('locationHighlights')}</p>
                       <div className="flex flex-col gap-3">
-                        {details.highlights.map((h, i) => (
+                        {raw.highlights.map((h, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <MapPin size={13} className="mt-0.5 shrink-0 text-gold-500" />
                             <span className="text-[13px] text-charcoal/70">{h}</span>
@@ -145,17 +145,17 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
               {/* Right — specs + CTA */}
               <div className="flex flex-col gap-8">
 
-                {details && (
+                {raw && (
                   <Reveal direction="left">
                     <div className="bg-navy p-8 flex flex-col gap-5">
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase">{tp('specs')}</p>
                       {[
-                        { Icon: MapPin,    label: tp('specLocation'), value: details.location },
-                        { Icon: Building2, label: tp('specType'),     value: details.type },
-                        { Icon: Layers,    label: tp('specUnits'),    value: details.units },
-                        { Icon: Ruler,     label: tp('specSize'),     value: details.size },
-                        { Icon: Building2, label: tp('specFloors'),   value: details.floors },
-                        { Icon: Calendar,  label: tp('specStatus'),   value: details.status },
+                        { Icon: MapPin,    label: tp('specLocation'), value: raw.location },
+                        { Icon: Building2, label: tp('specType'),     value: raw.type },
+                        { Icon: Layers,    label: tp('specUnits'),    value: raw.units },
+                        { Icon: Ruler,     label: tp('specSize'),     value: raw.size },
+                        { Icon: Building2, label: tp('specFloors'),   value: raw.floors },
+                        { Icon: Calendar,  label: tp('specStatus'),   value: raw.status },
                       ].map(({ Icon, label, value }) => (
                         <div key={label} className="flex items-start gap-3 border-b border-white/10 pb-4 last:border-0 last:pb-0">
                           <Icon size={13} className="mt-0.5 shrink-0 text-gold-500" />
