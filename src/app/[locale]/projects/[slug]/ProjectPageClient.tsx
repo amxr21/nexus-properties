@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale, useMessages } from 'next-intl';
 import { ArrowLeft, ArrowRight, MapPin, Calendar, Layers, Ruler, Building2, CheckCircle2, Phone, Mail } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -26,16 +26,21 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
   const tDet  = useTranslations('ProjectDetails') as any;
   const locale = useLocale();
 
-  const details = hasDetails ? {
-    location:   tDet(`${slug}.location`),
-    type:       tDet(`${slug}.type`),
-    units:      tDet(`${slug}.units`),
-    size:       tDet(`${slug}.size`),
-    floors:     tDet(`${slug}.floors`),
-    status:     tDet(`${slug}.status`),
-    features:   tDet.raw(`${slug}.features`) as string[],
-    amenities:  tDet.raw(`${slug}.amenities`) as string[],
-    highlights: tDet.raw(`${slug}.highlights`) as string[],
+  // useMessages gives the raw JSON — the only reliable way to read array values in next-intl 4.x
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const messages = useMessages() as any;
+  const rawDet   = hasDetails ? messages?.ProjectDetails?.[slug] : null;
+
+  const details = hasDetails && rawDet ? {
+    location:   tDet(`${slug}.location`)  as string,
+    type:       tDet(`${slug}.type`)      as string,
+    units:      tDet(`${slug}.units`)     as string,
+    size:       tDet(`${slug}.size`)      as string,
+    floors:     tDet(`${slug}.floors`)    as string,
+    status:     tDet(`${slug}.status`)    as string,
+    features:   (rawDet.features   ?? []) as string[],
+    amenities:  (rawDet.amenities  ?? []) as string[],
+    highlights: (rawDet.highlights ?? []) as string[],
   } : null;
 
   return (
@@ -57,7 +62,7 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
         <div className="bg-white border-b border-line">
           <Container>
             <a
-              href={`/${locale}#properties`}
+              href={`/${locale}/properties`}
               className="group inline-flex items-center gap-2 py-4 text-[9px] font-bold tracking-[0.22em] text-charcoal/40 uppercase transition-colors hover:text-navy"
             >
               {locale === 'ar'
@@ -88,13 +93,13 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   <div className="h-px flex-1 bg-line" />
                 </div>
 
-                {details && (
+                {details && details.features.length > 0 && (
                   <Reveal delay={80}>
                     <div>
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('features')}</p>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {details.features.map((f) => (
-                          <div key={f} className="flex items-start gap-3">
+                        {details.features.map((f, i) => (
+                          <div key={i} className="flex items-start gap-3">
                             <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-teal" />
                             <span className="text-[13px] text-charcoal/70">{f}</span>
                           </div>
@@ -104,13 +109,13 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   </Reveal>
                 )}
 
-                {details && (
+                {details && details.amenities.length > 0 && (
                   <Reveal delay={120}>
                     <div>
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('amenities')}</p>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {details.amenities.map((a) => (
-                          <div key={a} className="flex items-start gap-3">
+                        {details.amenities.map((a, i) => (
+                          <div key={i} className="flex items-start gap-3">
                             <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-navy" />
                             <span className="text-[13px] text-charcoal/70">{a}</span>
                           </div>
@@ -120,13 +125,13 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   </Reveal>
                 )}
 
-                {details && (
+                {details && details.highlights.length > 0 && (
                   <Reveal delay={160}>
                     <div className="border border-line p-8">
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('locationHighlights')}</p>
                       <div className="flex flex-col gap-3">
-                        {details.highlights.map((h) => (
-                          <div key={h} className="flex items-start gap-3">
+                        {details.highlights.map((h, i) => (
+                          <div key={i} className="flex items-start gap-3">
                             <MapPin size={13} className="mt-0.5 shrink-0 text-gold-500" />
                             <span className="text-[13px] text-charcoal/70">{h}</span>
                           </div>
