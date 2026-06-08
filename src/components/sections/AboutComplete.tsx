@@ -1,11 +1,13 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Container } from '@/components/ui/Container';
 import { SectionHeadingBlock } from '@/components/ui/SectionHeadingBlock';
 import { StatCounter } from '@/components/ui/StatCounter';
 import { aboutStats } from '@/lib/content';
 
-export async function AboutComplete() {
-  const t = await getTranslations();
+export function AboutComplete() {
+  const t = useTranslations();
 
   return (
     <section id="about" aria-label="About Nexus Properties" className="bg-gray py-20 md:py-28">

@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import { images } from '@/lib/content';
 
 function TextBlock({ label, body }: { label: string; body: string }) {
@@ -11,14 +13,13 @@ function TextBlock({ label, body }: { label: string; body: string }) {
   );
 }
 
-export async function VisionMessage() {
-  const t = await getTranslations('VisionMessage');
+export function VisionMessage() {
+  const t = useTranslations('VisionMessage');
 
   return (
     <section aria-label="Vision and Message">
       <div className="flex flex-col md:flex-row md:min-h-140">
 
-        {/* Left — image, ~45% width */}
         <div className="relative w-full md:w-[45%] shrink-0 aspect-3/4 md:aspect-auto">
           <Image
             src={images.vision}
@@ -29,7 +30,6 @@ export async function VisionMessage() {
           />
         </div>
 
-        {/* Right — text on white */}
         <div className="flex flex-col justify-center gap-10 bg-white-gray px-10 py-16 md:px-16 lg:px-24 flex-1">
           <TextBlock label={t('visionLabel')} body={t('visionText')} />
           <div className="h-px w-full bg-line" />

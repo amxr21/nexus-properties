@@ -27,7 +27,7 @@ export function Hero() {
   return (
     <section aria-label="Hero" className="relative flex h-screen min-h-150 flex-col overflow-hidden z-0">
 
-      {/* Slide backgrounds */}
+      {/* Full-bleed slide backgrounds */}
       {slides.map((slide, i) => (
         <div
           key={slide.id}
@@ -43,23 +43,21 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-1 flex-col">
-        {/* Top spacer — navbar height */}
-        <div className="h-20 md:h-24" />
+        <div className="h-18" />
 
-        {/* Hero headline — vertically centered */}
-        <div className="flex flex-1 items-center">
+        <div className="flex flex-1 items-center ">
           <Container>
-            <div className={cn('flex', isRTL ? 'justify-start' : 'justify-end')}>
-              <div className={cn('max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl', isRTL ? 'text-start' : 'text-end')}>
-                <h1 className="font-display font-light uppercase leading-[1.05] tracking-[0.04em] text-white text-[2.4rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem]">
+            <div className="flex justify-end">
+              <div className="max-w-xl text-end">
+                <h1 className="font-display font-light text-7xl uppercase leading-none tracking-[0.04em] text-white">
                   <span className="block">{t('Hero.headline1')}</span>
                   <span className="block">{t('Hero.headline2')}</span>
                   <span className="block">{t('Hero.headline3')}</span>
                 </h1>
-                <div className="mt-6 md:mt-8">
+                <div className="mt-8">
                   <a
-                    href={isRTL ? '/ar#properties' : '#properties'}
-                    className="inline-block border border-white/55 px-6 py-3 md:px-8 text-[9px] md:text-[10px] font-bold tracking-[0.28em] text-white uppercase transition-all hover:border-white hover:bg-white/10"
+                    href="#"
+                    className="inline-block border border-white/55 px-8 py-3 text-[10px] font-bold tracking-[0.28em] text-white uppercase transition-all hover:border-white hover:bg-white/10"
                   >
                     {t('Hero.cta')}
                   </a>
@@ -69,15 +67,16 @@ export function Hero() {
           </Container>
         </div>
 
-        {/* Bottom bar — phone + nav */}
+        {/* Bottom bar */}
         <Container>
-          <div className="flex items-end justify-between pb-8 md:pb-16">
+          <div className="flex items-end justify-between pb-36">
             <a href={`tel:${t('Hero.phone')}`} className="flex flex-col leading-tight">
-              <span className="text-[7px] md:text-[8px] font-bold tracking-[0.25em] text-white/50 uppercase">{t('Hero.callLabel')}</span>
-              <span className="mt-1 font-display text-base md:text-xl font-light tracking-wider text-white">{t('Hero.phone')}</span>
+              <span className="text-[8px] font-bold tracking-[0.25em] text-white/50 uppercase">{t('Hero.callLabel')}</span>
+              <span dir="ltr" className="mt-1 font-display text-xl font-light tracking-wider text-white">{t('Hero.phone')}</span>
             </a>
 
             <div className="flex items-center gap-3">
+              {/* Slide dots */}
               <div className="flex items-center gap-2" role="tablist" aria-label="Slides">
                 {slides.map((slide, i) => (
                   <button

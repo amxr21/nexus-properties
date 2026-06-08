@@ -130,6 +130,33 @@
     "p3Brief": "A 28-story Class-A office tower at The Domain, positioning Nexus at the forefront of Austin's booming tech corridor.",
     "p3Body": "Domain North Tower will be the defining landmark of Austin's fastest-growing tech corridor. The 28-story tower delivers 520,000 sq ft of LEED Platinum-certified workspace, ground-level retail activation, and a rooftop amenity deck with panoramic views across Austin."
   },
+  "ReportsPage": {
+    "eyebrow": "Research & Insights",
+    "heading": "Market Reports",
+    "sub": "In-depth analysis of Austin's real estate market, updated quarterly by our research team.",
+    "downloadBtn": "Download PDF",
+    "ctaHeading": "Want Custom Market Research?",
+    "ctaSub": "Our analysts can prepare tailored reports for specific submarkets or asset classes.",
+    "ctaBtn": "Request a Report"
+  },
+  "BlogPage": {
+    "eyebrow": "Nexus Insights",
+    "heading": "News & Perspectives",
+    "sub": "Expert commentary on Austin real estate, market trends, and investment opportunities.",
+    "readBtn": "Read Article"
+  },
+  "PropertiesPage": {
+    "eyebrow": "Our Portfolio",
+    "heading": "Every Property, One Place",
+    "sub": "Explore our full portfolio of ongoing developments and completed landmark projects across Austin, TX.",
+    "ongoingLabel": "Ongoing",
+    "completedLabel": "Completed",
+    "allLabel": "All Projects",
+    "exploreBtn": "View Project",
+    "ctaHeading": "Find Your Next Investment",
+    "ctaSub": "Our advisors are ready to match you with the right opportunity.",
+    "ctaBtn": "Talk to an Advisor"
+  },
   "ServicesPage": {
     "eyebrow": "What We Offer",
     "heading": "Full-Spectrum Real Estate Services",
@@ -321,6 +348,85 @@
     "ctaBody": "Our team is available to answer any questions and schedule a private viewing.",
     "ctaBtn": "Request Information"
   },
+  "ProjectDetails": {
+    "lamar-collective": {
+      "location": "South Austin, TX",
+      "type": "Mixed-Use Development",
+      "units": "240 Residences",
+      "size": "From 650 – 2,400 sq ft",
+      "floors": "14 Floors",
+      "status": "Est. Completion Q4 2025",
+      "features": ["Floor-to-ceiling windows with city views", "Private balconies on select units", "Gourmet kitchen with quartz countertops", "In-unit washer & dryer", "Smart home technology pre-installed", "Secure underground parking"],
+      "amenities": ["Resort-style rooftop pool & lounge", "State-of-the-art fitness center", "Co-working & private meeting suites", "Ground-floor curated retail & dining", "Concierge services 7 days a week", "Pet-friendly with dedicated dog run", "EV charging stations", "Bike storage & repair station"],
+      "highlights": ["LEED Silver certified construction", "Walking distance to Barton Springs & Zilker Park", "Steps from Austin's most vibrant cultural corridor", "Direct access to Austin MetroRapid transit"]
+    },
+    "eastside-yard": {
+      "location": "East Austin, TX",
+      "type": "Mixed-Use Creative Campus",
+      "units": "120 Live-Work Lofts",
+      "size": "From 800 – 1,800 sq ft",
+      "floors": "8 Floors",
+      "status": "Est. Completion Q2 2026",
+      "features": ["Polished concrete floors & exposed ductwork", "Soaring 14-ft ceilings", "Industrial-chic kitchen with gas range", "Private studio mezzanine in select units", "High-speed fiber internet infrastructure", "Dedicated maker storage rooms"],
+      "amenities": ["60,000 sq ft of maker & creative studio space", "12,000 sq ft curated food hall", "Outdoor event lawn & amphitheater", "Rooftop bar & garden terrace", "Dedicated freight elevator for studios", "On-site gallery & exhibition space", "Childcare center", "Secure bike valet"],
+      "highlights": ["Three city blocks of activated streetscape", "Anchor tenant partnerships with local creative brands", "Adjacent to East 6th Street entertainment district", "Public art installation program"]
+    },
+    "domain-north-tower": {
+      "location": "The Domain, Austin, TX",
+      "type": "Class-A Office Tower",
+      "units": "520,000 sq ft Office Space",
+      "size": "Floors 2–28 available",
+      "floors": "28 Floors",
+      "status": "Est. Completion Q1 2027",
+      "features": ["Column-free floor plates up to 24,000 sq ft", "Floor-to-ceiling glazing with solar shading", "Private terraces on floors 10, 18, & 28", "Fiber-optic & redundant power infrastructure", "LEED Platinum pursuit certification", "Advanced HVAC with MERV-16 filtration"],
+      "amenities": ["Panoramic rooftop amenity deck", "Full-service conference & event center", "Premium fitness center & locker rooms", "Ground-floor dining & retail activation", "Secure parking at 3:1,000 ratio", "EV charging for 30% of stalls", "Bike valet & full shower facilities", "On-site property management"],
+      "highlights": ["Positioned at the gateway to The Domain tech corridor", "Adjacent to Apple, Amazon, Meta, and Google campuses", "Direct connection to MetroRail Red Line", "WELL Building Standard certification targeted"]
+    },
+    "congress-plaza": {
+      "location": "Downtown Austin, TX",
+      "type": "Class-A Commercial Office",
+      "units": "380,000 sq ft",
+      "size": "Floors 3–22 available",
+      "floors": "22 Floors",
+      "status": "Completed Q2 2023",
+      "features": ["Efficient 18,000 sq ft floor plates", "Triple-glazed curtain wall façade", "Private balconies on corner suites", "Built-in data center infrastructure", "LEED Platinum certified", "24/7 secured access control"],
+      "amenities": ["Signature restaurant on ground floor", "Fitness & wellness center with spa", "Conference center with AV package", "Rooftop terrace with panoramic views", "Valet & self-park garage", "Concierge & building management", "On-site dry cleaning & postal services", "EV charging infrastructure"],
+      "highlights": ["Congress Avenue address with Capitol views", "Walking distance to Austin City Hall", "Surrounded by Austin's premier dining & culture", "WELL Building Standard Gold certification"]
+    },
+    "barton-heights": {
+      "location": "Barton Hills, Austin, TX",
+      "type": "Boutique Residential",
+      "units": "48 Bespoke Homes",
+      "size": "2,200 – 4,800 sq ft",
+      "floors": "2–3 Floors per home",
+      "status": "Completed Q4 2022",
+      "features": ["Hill Country limestone & cedar exteriors", "Chef's kitchen with Thermador appliances", "Primary suite with spa bath & soaking tub", "Private pool & outdoor kitchen on select lots", "Three-car garages with workshop space", "Whole-home automation system"],
+      "amenities": ["Gated community with 24-hr security", "Residents-only hiking trail network", "Neighborhood park & picnic area", "Shared garden & orchard", "Community clubhouse for private events", "Proximity to Barton Creek Greenbelt", "HOA-managed landscaping", "Guest parking & visitor management"],
+      "highlights": ["Backing directly onto Barton Creek Greenbelt", "Minutes from Barton Springs Pool", "Top-rated AISD school district", "Each home sited for maximum privacy"]
+    },
+    "rainey-lofts": {
+      "location": "Rainey Street, Austin, TX",
+      "type": "Urban Residential Lofts",
+      "units": "72 Loft Residences",
+      "size": "680 – 1,600 sq ft",
+      "floors": "10 Floors",
+      "status": "Completed Q1 2022",
+      "features": ["Exposed concrete ceilings at 11 ft", "Polished concrete & hardwood floors", "Open-concept kitchen with waterfall island", "Floor-to-ceiling steel-framed windows", "Private juliet balconies", "In-unit Bosch washer/dryer stack"],
+      "amenities": ["Rooftop terrace overlooking Rainey Street", "Resort pool & outdoor lounge", "Fitness studio with Peloton bikes", "Ground-floor bar & coffee lounge", "Controlled-access parking garage", "Package concierge & cold storage", "Dog spa & grooming station", "Co-working lounge with private pods"],
+      "highlights": ["Steps from Austin's most celebrated bar scene", "Walk score of 94 — walker's paradise", "Lady Bird Lake hike & bike trail access", "Surrounded by James Beard-nominated restaurants"]
+    },
+    "mueller-commons": {
+      "location": "Mueller District, Austin, TX",
+      "type": "Mixed-Use Community",
+      "units": "160 Residences",
+      "size": "720 – 1,900 sq ft",
+      "floors": "6 Floors",
+      "status": "Completed Q3 2021",
+      "features": ["Energy-efficient double-pane windows", "Quartz countertops & tile backsplash", "Stainless Whirlpool appliance package", "Private patios on ground-level units", "Flexible open floorplans", "Walk-in closets in all bedrooms"],
+      "amenities": ["40,000 sq ft neighborhood retail below", "Central park with fountain & seating", "Hike-and-bike trail network", "Community pool & splash pad", "Fitness center & yoga studio", "Children's playground", "Farmers market pavilion", "Underground secured parking"],
+      "highlights": ["Mueller central park frontage", "Walkable to Mueller's retail & dining", "Sustainable design with solar canopies", "Connected to citywide trail system"]
+    }
+  },
   "Footer": {
     "tagline": "Elevating Real Estate Excellence",
     "contactHeading": "Contact",
@@ -365,5 +471,98 @@
     "tiktok": "TikTok",
     "copyright": "© 2025 Nexus Properties. All rights reserved.",
     "copyrightSub": "Licensed Real Estate Brokerage · Austin, Texas"
+  },
+  "NotFound": {
+    "eyebrow": "Error 404",
+    "heading": "Page Not Found",
+    "sub": "The page you're looking for doesn't exist or has been moved. Let us help you find what you need.",
+    "homeBtn": "Back to Home",
+    "propertiesBtn": "View Properties"
+  },
+  "PrivacyPolicy": {
+    "eyebrow": "Legal",
+    "heading": "Privacy Policy",
+    "lastUpdated": "Last updated: June 2025",
+    "s1Heading": "Information We Collect",
+    "s1Body": "We collect information you provide directly to us, such as when you inquire about a property, register for events, or contact us for services. This includes your name, email address, phone number, and any other details you share.",
+    "s2Heading": "How We Use Your Information",
+    "s2Body": "We use the information we collect to provide, maintain, and improve our services, communicate with you about properties and opportunities, send you market reports and newsletters you've requested, and comply with legal obligations.",
+    "s3Heading": "Information Sharing",
+    "s3Body": "We do not sell your personal information. We may share your information with trusted service providers who assist us in operating our business, subject to confidentiality agreements. We may also disclose information when required by law.",
+    "s4Heading": "Data Security",
+    "s4Body": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no internet transmission is completely secure.",
+    "s5Heading": "Contact Us",
+    "s5Body": "If you have questions about this Privacy Policy or our data practices, please contact us at hello@nexusproperties.com or visit our office at 1234 Lamar Blvd, Austin, TX 78704."
+  },
+  "Terms": {
+    "eyebrow": "Legal",
+    "heading": "Terms of Service",
+    "lastUpdated": "Last updated: June 2025",
+    "s1Heading": "Acceptance of Terms",
+    "s1Body": "By accessing or using the Nexus Properties website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.",
+    "s2Heading": "Use of Services",
+    "s2Body": "Our services are intended for lawful purposes only. You agree not to misuse our platform, reproduce content without permission, or engage in any activity that could harm Nexus Properties or its clients.",
+    "s3Heading": "Intellectual Property",
+    "s3Body": "All content on this website, including text, images, logos, and designs, is the intellectual property of Nexus Properties or its licensors. Unauthorized use is strictly prohibited.",
+    "s4Heading": "Disclaimer of Warranties",
+    "s4Body": "Our services are provided 'as is' without warranties of any kind. We do not guarantee the accuracy of property listings, market data, or investment projections presented on our platform.",
+    "s5Heading": "Limitation of Liability",
+    "s5Body": "Nexus Properties shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services. Our total liability shall not exceed the amount paid for services in the preceding twelve months."
+  },
+  "CookiePolicy": {
+    "eyebrow": "Legal",
+    "heading": "Cookie Policy",
+    "lastUpdated": "Last updated: June 2025",
+    "s1Heading": "What Are Cookies",
+    "s1Body": "Cookies are small text files placed on your device when you visit our website. They help us provide a better experience by remembering your preferences and understanding how you use our site.",
+    "s2Heading": "Types of Cookies We Use",
+    "s2Body": "We use essential cookies (required for the website to function), analytics cookies (to understand traffic patterns), and preference cookies (to remember your language and display choices). We do not use advertising or tracking cookies.",
+    "s3Heading": "Managing Cookies",
+    "s3Body": "You can control cookies through your browser settings. Disabling cookies may affect some functionality of our website. Most browsers allow you to refuse new cookies and delete existing ones.",
+    "s4Heading": "Contact",
+    "s4Body": "For questions about our cookie practices, contact us at hello@nexusproperties.com."
+  },
+  "Disclaimer": {
+    "eyebrow": "Legal",
+    "heading": "Disclaimer",
+    "lastUpdated": "Last updated: June 2025",
+    "s1Heading": "General Information Only",
+    "s1Body": "The information on this website is provided for general informational purposes only and does not constitute professional real estate, financial, legal, or investment advice. Always consult qualified professionals before making real estate decisions.",
+    "s2Heading": "Property Information Accuracy",
+    "s2Body": "While we strive to keep property listings, pricing, and availability accurate, information is subject to change without notice. Nexus Properties makes no representations or warranties about the completeness or accuracy of any listing.",
+    "s3Heading": "Third-Party Links",
+    "s3Body": "Our website may contain links to third-party websites. Nexus Properties is not responsible for the content, privacy practices, or reliability of any external sites. Links are provided for convenience only."
+  },
+  "Accessibility": {
+    "eyebrow": "Accessibility",
+    "heading": "Accessibility Statement",
+    "lastUpdated": "Last updated: June 2025",
+    "s1Heading": "Our Commitment",
+    "s1Body": "Nexus Properties is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards.",
+    "s2Heading": "Conformance Status",
+    "s2Body": "We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. Our website is built with semantic HTML, sufficient color contrast, keyboard navigability, and screen reader compatibility.",
+    "s3Heading": "Feedback & Contact",
+    "s3Body": "If you experience any accessibility barriers or have suggestions for improvement, please contact us at hello@nexusproperties.com. We take all feedback seriously and respond within 2 business days."
+  },
+  "SitemapPage": {
+    "eyebrow": "Navigation",
+    "heading": "Sitemap",
+    "mainHeading": "Main Pages",
+    "projectsHeading": "Projects",
+    "insightsHeading": "Insights",
+    "legalHeading": "Legal",
+    "linkHome": "Home",
+    "linkAbout": "About",
+    "linkProperties": "Properties",
+    "linkServices": "Services",
+    "linkCareers": "Careers",
+    "linkContact": "Contact",
+    "linkReports": "Market Reports",
+    "linkBlog": "Blog",
+    "linkPrivacy": "Privacy Policy",
+    "linkTerms": "Terms of Service",
+    "linkCookie": "Cookie Policy",
+    "linkDisclaimer": "Disclaimer",
+    "linkAccessibility": "Accessibility"
   }
 }

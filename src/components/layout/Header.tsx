@@ -60,7 +60,7 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none">
       <div className={cn(
-        'pointer-events-auto w-[90%] max-w-6xl rounded-2xl transition-all duration-500',
+        'pointer-events-auto w-[90%] max-w-342 rounded-2xl transition-all duration-500',
         scrolled
           ? 'bg-white/90 backdrop-blur-md shadow-lg shadow-black/8'
           : 'bg-white/5'

@@ -145,7 +145,7 @@ export const aboutStats = [
 export const navLinks = [
   { key: 'Nav.home',       href: '/' },
   { key: 'Nav.about',      href: '/#about' },
-  { key: 'Nav.properties', href: '/#properties' },
+  { key: 'Nav.properties', href: '/properties' },
   { key: 'Nav.careers',    href: '/careers' },
   { key: 'Nav.services',   href: '/services' },
   { key: 'Nav.contact',    href: '/contact' },

@@ -1,11 +1,13 @@
+'use client';
+
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import { Container } from '@/components/ui/Container';
 import { SectionHeadingBlock } from '@/components/ui/SectionHeadingBlock';
 import { teamMembers } from '@/lib/content';
 
-export async function Team() {
-  const t = await getTranslations();
+export function Team() {
+  const t = useTranslations();
 
   return (
     <section aria-label="Our team" className="bg-white py-20 md:py-28">

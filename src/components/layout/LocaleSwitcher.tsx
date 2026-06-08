@@ -25,7 +25,7 @@ export function LocaleSwitcher({ scrolled = false }: { scrolled?: boolean }) {
       )}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-gold-500 transition-transform duration-200 group-hover:scale-110" />
-      <span className="text-[9px] font-bold tracking-[0.2em] uppercase leading-none">
+      <span className={`text-[9px] font-bold leading-none ${locale === 'en' ? 'font-arabic tracking-normal' : 'tracking-[0.2em] uppercase'}`}>
         {locale === 'en' ? 'العربية' : 'EN'}
       </span>
     </button>

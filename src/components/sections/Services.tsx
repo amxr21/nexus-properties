@@ -1,11 +1,13 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Container } from '@/components/ui/Container';
 import { SectionHeadingBlock } from '@/components/ui/SectionHeadingBlock';
 import { OverlayImage } from '@/components/ui/OverlayImage';
 import { serviceCards, images } from '@/lib/content';
 
-export async function Services() {
-  const t = await getTranslations();
+export function Services() {
+  const t = useTranslations();
 
   return (
     <section aria-label="Our services" className="relative overflow-hidden py-24 md:py-32">

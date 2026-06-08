@@ -1,14 +1,15 @@
+'use client';
+
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import { images } from '@/lib/content';
 
-export async function SophisticationBanner() {
-  const t = await getTranslations('SophisticationBanner');
+export function SophisticationBanner() {
+  const t = useTranslations('SophisticationBanner');
 
   return (
     <section className="overflow-hidden" aria-label="Sophistication banner">
 
-      {/* Collage strip — 6 images, staggered heights, full-bleed, no overflow */}
       <div className="grid grid-cols-3 sm:grid-cols-6">
         {images.showoff.map((src, i) => (
           <div
@@ -27,7 +28,6 @@ export async function SophisticationBanner() {
         ))}
       </div>
 
-      {/* Text block */}
       <div className="bg-white px-6 py-16 md:py-20">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="font-display text-[1.5rem] font-light leading-snug text-navy md:text-[2rem] lg:text-[2.4rem]">

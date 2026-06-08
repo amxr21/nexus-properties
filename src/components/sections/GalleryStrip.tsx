@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import { images } from '@/lib/content';
 
 const altKeys = [
@@ -10,8 +12,8 @@ const altKeys = [
   'Gallery.image5Alt',
 ] as const;
 
-export async function GalleryStrip() {
-  const t = await getTranslations();
+export function GalleryStrip() {
+  const t = useTranslations();
 
   return (
     <div
