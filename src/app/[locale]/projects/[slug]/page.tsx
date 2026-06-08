@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { ongoingProjects, completedProjects } from '@/lib/content';
 import { ProjectPageClient } from './ProjectPageClient';
 
+export const dynamic = 'force-dynamic';
+
 const allProjects = [...ongoingProjects, ...completedProjects];
 
 const slugsWithDetails = new Set([
@@ -13,10 +15,6 @@ const slugsWithDetails = new Set([
   'rainey-lofts',
   'mueller-commons',
 ]);
-
-export function generateStaticParams() {
-  return allProjects.map((p) => ({ slug: p.slug }));
-}
 
 export default async function ProjectPage({
   params,
