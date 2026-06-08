@@ -369,81 +369,46 @@
   },
   "ProjectDetails": {
     "lamar-collective": {
-      "location": "South Austin, TX",
-      "type": "Mixed-Use Development",
-      "units": "240 Residences",
-      "size": "From 650 – 2,400 sq ft",
-      "floors": "14 Floors",
-      "status": "Est. Completion Q4 2025",
-      "features": ["Floor-to-ceiling windows with city views", "Private balconies on select units", "Gourmet kitchen with quartz countertops", "In-unit washer & dryer", "Smart home technology pre-installed", "Secure underground parking"],
-      "amenities": ["Resort-style rooftop pool & lounge", "State-of-the-art fitness center", "Co-working & private meeting suites", "Ground-floor curated retail & dining", "Concierge services 7 days a week", "Pet-friendly with dedicated dog run", "EV charging stations", "Bike storage & repair station"],
-      "highlights": ["LEED Silver certified construction", "Walking distance to Barton Springs & Zilker Park", "Steps from Austin's most vibrant cultural corridor", "Direct access to Austin MetroRapid transit"]
+      "location": "South Austin, TX", "type": "Mixed-Use Development", "units": "240 Residences", "size": "From 650 – 2,400 sq ft", "floors": "14 Floors", "status": "Est. Completion Q4 2025",
+      "f0": "Floor-to-ceiling windows with city views", "f1": "Private balconies on select units", "f2": "Gourmet kitchen with quartz countertops", "f3": "In-unit washer & dryer", "f4": "Smart home technology pre-installed", "f5": "Secure underground parking", "fCount": "6",
+      "a0": "Resort-style rooftop pool & lounge", "a1": "State-of-the-art fitness center", "a2": "Co-working & private meeting suites", "a3": "Ground-floor curated retail & dining", "a4": "Concierge services 7 days a week", "a5": "Pet-friendly with dedicated dog run", "a6": "EV charging stations", "a7": "Bike storage & repair station", "aCount": "8",
+      "h0": "LEED Silver certified construction", "h1": "Walking distance to Barton Springs & Zilker Park", "h2": "Steps from Austin's most vibrant cultural corridor", "h3": "Direct access to Austin MetroRapid transit", "hCount": "4"
     },
     "eastside-yard": {
-      "location": "East Austin, TX",
-      "type": "Mixed-Use Creative Campus",
-      "units": "120 Live-Work Lofts",
-      "size": "From 800 – 1,800 sq ft",
-      "floors": "8 Floors",
-      "status": "Est. Completion Q2 2026",
-      "features": ["Polished concrete floors & exposed ductwork", "Soaring 14-ft ceilings", "Industrial-chic kitchen with gas range", "Private studio mezzanine in select units", "High-speed fiber internet infrastructure", "Dedicated maker storage rooms"],
-      "amenities": ["60,000 sq ft of maker & creative studio space", "12,000 sq ft curated food hall", "Outdoor event lawn & amphitheater", "Rooftop bar & garden terrace", "Dedicated freight elevator for studios", "On-site gallery & exhibition space", "Childcare center", "Secure bike valet"],
-      "highlights": ["Three city blocks of activated streetscape", "Anchor tenant partnerships with local creative brands", "Adjacent to East 6th Street entertainment district", "Public art installation program"]
+      "location": "East Austin, TX", "type": "Mixed-Use Creative Campus", "units": "120 Live-Work Lofts", "size": "From 800 – 1,800 sq ft", "floors": "8 Floors", "status": "Est. Completion Q2 2026",
+      "f0": "Polished concrete floors & exposed ductwork", "f1": "Soaring 14-ft ceilings", "f2": "Industrial-chic kitchen with gas range", "f3": "Private studio mezzanine in select units", "f4": "High-speed fiber internet infrastructure", "f5": "Dedicated maker storage rooms", "fCount": "6",
+      "a0": "60,000 sq ft of maker & creative studio space", "a1": "12,000 sq ft curated food hall", "a2": "Outdoor event lawn & amphitheater", "a3": "Rooftop bar & garden terrace", "a4": "Dedicated freight elevator for studios", "a5": "On-site gallery & exhibition space", "a6": "Childcare center", "a7": "Secure bike valet", "aCount": "8",
+      "h0": "Three city blocks of activated streetscape", "h1": "Anchor tenant partnerships with local creative brands", "h2": "Adjacent to East 6th Street entertainment district", "h3": "Public art installation program", "hCount": "4"
     },
     "domain-north-tower": {
-      "location": "The Domain, Austin, TX",
-      "type": "Class-A Office Tower",
-      "units": "520,000 sq ft Office Space",
-      "size": "Floors 2–28 available",
-      "floors": "28 Floors",
-      "status": "Est. Completion Q1 2027",
-      "features": ["Column-free floor plates up to 24,000 sq ft", "Floor-to-ceiling glazing with solar shading", "Private terraces on floors 10, 18, & 28", "Fiber-optic & redundant power infrastructure", "LEED Platinum pursuit certification", "Advanced HVAC with MERV-16 filtration"],
-      "amenities": ["Panoramic rooftop amenity deck", "Full-service conference & event center", "Premium fitness center & locker rooms", "Ground-floor dining & retail activation", "Secure parking at 3:1,000 ratio", "EV charging for 30% of stalls", "Bike valet & full shower facilities", "On-site property management"],
-      "highlights": ["Positioned at the gateway to The Domain tech corridor", "Adjacent to Apple, Amazon, Meta, and Google campuses", "Direct connection to MetroRail Red Line", "WELL Building Standard certification targeted"]
+      "location": "The Domain, Austin, TX", "type": "Class-A Office Tower", "units": "520,000 sq ft Office Space", "size": "Floors 2–28 available", "floors": "28 Floors", "status": "Est. Completion Q1 2027",
+      "f0": "Column-free floor plates up to 24,000 sq ft", "f1": "Floor-to-ceiling glazing with solar shading", "f2": "Private terraces on floors 10, 18, & 28", "f3": "Fiber-optic & redundant power infrastructure", "f4": "LEED Platinum pursuit certification", "f5": "Advanced HVAC with MERV-16 filtration", "fCount": "6",
+      "a0": "Panoramic rooftop amenity deck", "a1": "Full-service conference & event center", "a2": "Premium fitness center & locker rooms", "a3": "Ground-floor dining & retail activation", "a4": "Secure parking at 3:1,000 ratio", "a5": "EV charging for 30% of stalls", "a6": "Bike valet & full shower facilities", "a7": "On-site property management", "aCount": "8",
+      "h0": "Positioned at the gateway to The Domain tech corridor", "h1": "Adjacent to Apple, Amazon, Meta, and Google campuses", "h2": "Direct connection to MetroRail Red Line", "h3": "WELL Building Standard certification targeted", "hCount": "4"
     },
     "congress-plaza": {
-      "location": "Downtown Austin, TX",
-      "type": "Class-A Commercial Office",
-      "units": "380,000 sq ft",
-      "size": "Floors 3–22 available",
-      "floors": "22 Floors",
-      "status": "Completed Q2 2023",
-      "features": ["Efficient 18,000 sq ft floor plates", "Triple-glazed curtain wall façade", "Private balconies on corner suites", "Built-in data center infrastructure", "LEED Platinum certified", "24/7 secured access control"],
-      "amenities": ["Signature restaurant on ground floor", "Fitness & wellness center with spa", "Conference center with AV package", "Rooftop terrace with panoramic views", "Valet & self-park garage", "Concierge & building management", "On-site dry cleaning & postal services", "EV charging infrastructure"],
-      "highlights": ["Congress Avenue address with Capitol views", "Walking distance to Austin City Hall", "Surrounded by Austin's premier dining & culture", "WELL Building Standard Gold certification"]
+      "location": "Downtown Austin, TX", "type": "Class-A Commercial Office", "units": "380,000 sq ft", "size": "Floors 3–22 available", "floors": "22 Floors", "status": "Completed Q2 2023",
+      "f0": "Efficient 18,000 sq ft floor plates", "f1": "Triple-glazed curtain wall façade", "f2": "Private balconies on corner suites", "f3": "Built-in data center infrastructure", "f4": "LEED Platinum certified", "f5": "24/7 secured access control", "fCount": "6",
+      "a0": "Signature restaurant on ground floor", "a1": "Fitness & wellness center with spa", "a2": "Conference center with AV package", "a3": "Rooftop terrace with panoramic views", "a4": "Valet & self-park garage", "a5": "Concierge & building management", "a6": "On-site dry cleaning & postal services", "a7": "EV charging infrastructure", "aCount": "8",
+      "h0": "Congress Avenue address with Capitol views", "h1": "Walking distance to Austin City Hall", "h2": "Surrounded by Austin's premier dining & culture", "h3": "WELL Building Standard Gold certification", "hCount": "4"
     },
     "barton-heights": {
-      "location": "Barton Hills, Austin, TX",
-      "type": "Boutique Residential",
-      "units": "48 Bespoke Homes",
-      "size": "2,200 – 4,800 sq ft",
-      "floors": "2–3 Floors per home",
-      "status": "Completed Q4 2022",
-      "features": ["Hill Country limestone & cedar exteriors", "Chef's kitchen with Thermador appliances", "Primary suite with spa bath & soaking tub", "Private pool & outdoor kitchen on select lots", "Three-car garages with workshop space", "Whole-home automation system"],
-      "amenities": ["Gated community with 24-hr security", "Residents-only hiking trail network", "Neighborhood park & picnic area", "Shared garden & orchard", "Community clubhouse for private events", "Proximity to Barton Creek Greenbelt", "HOA-managed landscaping", "Guest parking & visitor management"],
-      "highlights": ["Backing directly onto Barton Creek Greenbelt", "Minutes from Barton Springs Pool", "Top-rated AISD school district", "Each home sited for maximum privacy"]
+      "location": "Barton Hills, Austin, TX", "type": "Boutique Residential", "units": "48 Bespoke Homes", "size": "2,200 – 4,800 sq ft", "floors": "2–3 Floors per home", "status": "Completed Q4 2022",
+      "f0": "Hill Country limestone & cedar exteriors", "f1": "Chef's kitchen with Thermador appliances", "f2": "Primary suite with spa bath & soaking tub", "f3": "Private pool & outdoor kitchen on select lots", "f4": "Three-car garages with workshop space", "f5": "Whole-home automation system", "fCount": "6",
+      "a0": "Gated community with 24-hr security", "a1": "Residents-only hiking trail network", "a2": "Neighborhood park & picnic area", "a3": "Shared garden & orchard", "a4": "Community clubhouse for private events", "a5": "Proximity to Barton Creek Greenbelt", "a6": "HOA-managed landscaping", "a7": "Guest parking & visitor management", "aCount": "8",
+      "h0": "Backing directly onto Barton Creek Greenbelt", "h1": "Minutes from Barton Springs Pool", "h2": "Top-rated AISD school district", "h3": "Each home sited for maximum privacy", "hCount": "4"
     },
     "rainey-lofts": {
-      "location": "Rainey Street, Austin, TX",
-      "type": "Urban Residential Lofts",
-      "units": "72 Loft Residences",
-      "size": "680 – 1,600 sq ft",
-      "floors": "10 Floors",
-      "status": "Completed Q1 2022",
-      "features": ["Exposed concrete ceilings at 11 ft", "Polished concrete & hardwood floors", "Open-concept kitchen with waterfall island", "Floor-to-ceiling steel-framed windows", "Private juliet balconies", "In-unit Bosch washer/dryer stack"],
-      "amenities": ["Rooftop terrace overlooking Rainey Street", "Resort pool & outdoor lounge", "Fitness studio with Peloton bikes", "Ground-floor bar & coffee lounge", "Controlled-access parking garage", "Package concierge & cold storage", "Dog spa & grooming station", "Co-working lounge with private pods"],
-      "highlights": ["Steps from Austin's most celebrated bar scene", "Walk score of 94 — walker's paradise", "Lady Bird Lake hike & bike trail access", "Surrounded by James Beard-nominated restaurants"]
+      "location": "Rainey Street, Austin, TX", "type": "Urban Residential Lofts", "units": "72 Loft Residences", "size": "680 – 1,600 sq ft", "floors": "10 Floors", "status": "Completed Q1 2022",
+      "f0": "Exposed concrete ceilings at 11 ft", "f1": "Polished concrete & hardwood floors", "f2": "Open-concept kitchen with waterfall island", "f3": "Floor-to-ceiling steel-framed windows", "f4": "Private juliet balconies", "f5": "In-unit Bosch washer/dryer stack", "fCount": "6",
+      "a0": "Rooftop terrace overlooking Rainey Street", "a1": "Resort pool & outdoor lounge", "a2": "Fitness studio with Peloton bikes", "a3": "Ground-floor bar & coffee lounge", "a4": "Controlled-access parking garage", "a5": "Package concierge & cold storage", "a6": "Dog spa & grooming station", "a7": "Co-working lounge with private pods", "aCount": "8",
+      "h0": "Steps from Austin's most celebrated bar scene", "h1": "Walk score of 94 — walker's paradise", "h2": "Lady Bird Lake hike & bike trail access", "h3": "Surrounded by James Beard-nominated restaurants", "hCount": "4"
     },
     "mueller-commons": {
-      "location": "Mueller District, Austin, TX",
-      "type": "Mixed-Use Community",
-      "units": "160 Residences",
-      "size": "720 – 1,900 sq ft",
-      "floors": "6 Floors",
-      "status": "Completed Q3 2021",
-      "features": ["Energy-efficient double-pane windows", "Quartz countertops & tile backsplash", "Stainless Whirlpool appliance package", "Private patios on ground-level units", "Flexible open floorplans", "Walk-in closets in all bedrooms"],
-      "amenities": ["40,000 sq ft neighborhood retail below", "Central park with fountain & seating", "Hike-and-bike trail network", "Community pool & splash pad", "Fitness center & yoga studio", "Children's playground", "Farmers market pavilion", "Underground secured parking"],
-      "highlights": ["Mueller central park frontage", "Walkable to Mueller's retail & dining", "Sustainable design with solar canopies", "Connected to citywide trail system"]
+      "location": "Mueller District, Austin, TX", "type": "Mixed-Use Community", "units": "160 Residences", "size": "720 – 1,900 sq ft", "floors": "6 Floors", "status": "Completed Q3 2021",
+      "f0": "Energy-efficient double-pane windows", "f1": "Quartz countertops & tile backsplash", "f2": "Stainless Whirlpool appliance package", "f3": "Private patios on ground-level units", "f4": "Flexible open floorplans", "f5": "Walk-in closets in all bedrooms", "fCount": "6",
+      "a0": "40,000 sq ft neighborhood retail below", "a1": "Central park with fountain & seating", "a2": "Hike-and-bike trail network", "a3": "Community pool & splash pad", "a4": "Fitness center & yoga studio", "a5": "Children's playground", "a6": "Farmers market pavilion", "a7": "Underground secured parking", "aCount": "8",
+      "h0": "Mueller central park frontage", "h1": "Walkable to Mueller's retail & dining", "h2": "Sustainable design with solar canopies", "h3": "Connected to citywide trail system", "hCount": "4"
     }
   },
   "Footer": {

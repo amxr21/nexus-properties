@@ -1,24 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useTranslations, useLocale, useMessages } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ArrowLeft, ArrowRight, MapPin, Calendar, Layers, Ruler, Building2, CheckCircle2, Phone, Mail } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
-
-interface ProjectDetails {
-  location: string;
-  type: string;
-  units: string;
-  size: string;
-  floors: string;
-  status: string;
-  features: string[];
-  amenities: string[];
-  highlights: string[];
-}
 
 interface Props {
   titleKey: string;
@@ -34,14 +22,18 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tProj = useTranslations('OngoingProjects') as any;
   const tp    = useTranslations('ProjectPage');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tDet  = useTranslations('ProjectDetails') as any;
   const locale = useLocale();
 
-  // Read ALL project details from raw messages — useTranslations cannot handle arrays
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const messages = useMessages() as any;
-  const raw: ProjectDetails | null = hasDetails
-    ? (messages?.ProjectDetails?.[slug] ?? null)
-    : null;
+  // Read flat string keys only — no arrays in JSON (useTranslations throws on array values)
+  const p = (k: string) => tDet(`${slug}.${k}`) as string;
+  const count = (prefix: string): number =>
+    hasDetails ? parseInt(p(`${prefix}Count`) || '0', 10) : 0;
+
+  const fCount = count('f');
+  const aCount = count('a');
+  const hCount = count('h');
 
   return (
     <>
@@ -93,15 +85,15 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   <div className="h-px flex-1 bg-line" />
                 </div>
 
-                {raw && Array.isArray(raw.features) && raw.features.length > 0 && (
+                {hasDetails && fCount > 0 && (
                   <Reveal delay={80}>
                     <div>
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('features')}</p>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {raw.features.map((f, i) => (
+                        {Array.from({ length: fCount }, (_, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-teal" />
-                            <span className="text-[13px] text-charcoal/70">{f}</span>
+                            <span className="text-[13px] text-charcoal/70">{p(`f${i}`)}</span>
                           </div>
                         ))}
                       </div>
@@ -109,15 +101,15 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   </Reveal>
                 )}
 
-                {raw && Array.isArray(raw.amenities) && raw.amenities.length > 0 && (
+                {hasDetails && aCount > 0 && (
                   <Reveal delay={120}>
                     <div>
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('amenities')}</p>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {raw.amenities.map((a, i) => (
+                        {Array.from({ length: aCount }, (_, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-navy" />
-                            <span className="text-[13px] text-charcoal/70">{a}</span>
+                            <span className="text-[13px] text-charcoal/70">{p(`a${i}`)}</span>
                           </div>
                         ))}
                       </div>
@@ -125,15 +117,15 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                   </Reveal>
                 )}
 
-                {raw && Array.isArray(raw.highlights) && raw.highlights.length > 0 && (
+                {hasDetails && hCount > 0 && (
                   <Reveal delay={160}>
                     <div className="border border-line p-8">
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('locationHighlights')}</p>
                       <div className="flex flex-col gap-3">
-                        {raw.highlights.map((h, i) => (
+                        {Array.from({ length: hCount }, (_, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <MapPin size={13} className="mt-0.5 shrink-0 text-gold-500" />
-                            <span className="text-[13px] text-charcoal/70">{h}</span>
+                            <span className="text-[13px] text-charcoal/70">{p(`h${i}`)}</span>
                           </div>
                         ))}
                       </div>
@@ -145,17 +137,17 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
               {/* Right — specs + CTA */}
               <div className="flex flex-col gap-8">
 
-                {raw && (
+                {hasDetails && (
                   <Reveal direction="left">
                     <div className="bg-navy p-8 flex flex-col gap-5">
                       <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase">{tp('specs')}</p>
                       {[
-                        { Icon: MapPin,    label: tp('specLocation'), value: raw.location },
-                        { Icon: Building2, label: tp('specType'),     value: raw.type },
-                        { Icon: Layers,    label: tp('specUnits'),    value: raw.units },
-                        { Icon: Ruler,     label: tp('specSize'),     value: raw.size },
-                        { Icon: Building2, label: tp('specFloors'),   value: raw.floors },
-                        { Icon: Calendar,  label: tp('specStatus'),   value: raw.status },
+                        { Icon: MapPin,    label: tp('specLocation'), value: p('location') },
+                        { Icon: Building2, label: tp('specType'),     value: p('type') },
+                        { Icon: Layers,    label: tp('specUnits'),    value: p('units') },
+                        { Icon: Ruler,     label: tp('specSize'),     value: p('size') },
+                        { Icon: Building2, label: tp('specFloors'),   value: p('floors') },
+                        { Icon: Calendar,  label: tp('specStatus'),   value: p('status') },
                       ].map(({ Icon, label, value }) => (
                         <div key={label} className="flex items-start gap-3 border-b border-white/10 pb-4 last:border-0 last:pb-0">
                           <Icon size={13} className="mt-0.5 shrink-0 text-gold-500" />
