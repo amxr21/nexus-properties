@@ -49,7 +49,7 @@ export function Hero() {
           <Container>
             <div className="flex justify-end">
               <div className="max-w-xl text-end">
-                <h1 className="font-display font-light text-7xl uppercase leading-none tracking-[0.04em] text-white">
+                <h1 className="font-display font-light text-[2.6rem] uppercase leading-none tracking-[0.04em] text-white sm:text-5xl md:text-6xl lg:text-7xl">
                   <span className="block">{t('Hero.headline1')}</span>
                   <span className="block">{t('Hero.headline2')}</span>
                   <span className="block">{t('Hero.headline3')}</span>
