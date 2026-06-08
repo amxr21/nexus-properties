@@ -1,74 +1,85 @@
-import { getTranslations } from 'next-intl/server';
-import { ArrowRight } from 'lucide-react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { Container } from '@/components/ui/Container';
-
-export default async function NotFound() {
-  // not-found pages don't receive params, so we can't reliably get locale here.
-  // We use getTranslations with a default so the page always renders.
-  let t: Awaited<ReturnType<typeof getTranslations<'NotFound'>>>;
-  try {
-    t = await getTranslations('NotFound');
-  } catch {
-    // Fallback if called outside locale context
-    return (
-      <html lang="en">
-        <body>
-          <main className="min-h-screen flex items-center justify-center bg-white">
-            <div className="text-center p-12">
-              <div className="text-[8rem] font-light text-gray-100 leading-none">404</div>
-              <h1 className="text-2xl font-light text-gray-800 mt-4">Page Not Found</h1>
-              <a href="/en" className="mt-8 inline-block bg-navy px-8 py-3 text-sm text-white uppercase tracking-widest hover:bg-navy/85 transition-colors">
-                Back to Home
-              </a>
-            </div>
-          </main>
-        </body>
-      </html>
-    );
-  }
-
+export default function NotFound() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-white flex items-center">
-        <Container>
-          <div className="flex flex-col items-center py-32 text-center gap-7">
-            <p className="text-[9px] font-bold tracking-[0.36em] text-gold-500 uppercase">{t('eyebrow')}</p>
-            <div className="font-display text-[7rem] font-light text-navy/10 leading-none select-none md:text-[12rem]">
-              404
-            </div>
-            <h1 className="font-display text-[1.8rem] font-light text-navy leading-snug max-w-md -mt-4 md:text-[2.4rem]">
-              {t('heading')}
-            </h1>
-            <p className="max-w-sm text-[15px] text-charcoal/55 leading-relaxed">
-              {t('sub')}
-            </p>
-            <div className="flex flex-col items-center gap-3 sm:flex-row mt-2">
-              <a
-                href="/en"
-                className="inline-flex items-center gap-2 bg-navy px-8 py-3.5 text-[9px] font-bold tracking-[0.24em] text-white uppercase hover:bg-navy/85 transition-colors"
-              >
-                {t('homeBtn')}
-                <ArrowRight size={12} />
-              </a>
-              <a
-                href="/en/properties"
-                className="inline-flex items-center gap-2 border border-navy/25 px-8 py-3.5 text-[9px] font-bold tracking-[0.24em] text-navy uppercase hover:border-navy hover:bg-navy/5 transition-colors"
-              >
-                {t('propertiesBtn')}
-              </a>
-            </div>
-            <div className="mt-6 flex items-center gap-4">
-              <div className="h-px w-12 bg-gold-500" />
-              <div className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
-              <div className="h-px w-12 bg-gold-500" />
-            </div>
-          </div>
-        </Container>
-      </main>
-      <Footer />
-    </>
+    <main
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: '2rem',
+        background: '#FCFCFC',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      <div
+        style={{
+          fontSize: 'clamp(6rem, 20vw, 12rem)',
+          fontWeight: 300,
+          color: '#1A2742',
+          opacity: 0.08,
+          lineHeight: 1,
+          userSelect: 'none',
+        }}
+      >
+        404
+      </div>
+
+      <h1
+        style={{
+          fontSize: 'clamp(1.4rem, 4vw, 2.2rem)',
+          fontWeight: 300,
+          color: '#1A2742',
+          marginTop: '-1rem',
+          marginBottom: '1rem',
+        }}
+      >
+        Page Not Found
+      </h1>
+
+      <p style={{ maxWidth: '28rem', color: '#3A3A3A99', lineHeight: 1.75, fontSize: '0.9rem', marginBottom: '2rem' }}>
+        The page you&apos;re looking for doesn&apos;t exist or has been moved.
+      </p>
+
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <a
+          href="/en"
+          style={{
+            background: '#1A2742',
+            color: '#FCFCFC',
+            padding: '0.75rem 2rem',
+            fontSize: '0.7rem',
+            fontWeight: 700,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            textDecoration: 'none',
+          }}
+        >
+          Back to Home
+        </a>
+        <a
+          href="/en/properties"
+          style={{
+            border: '1px solid #1A274240',
+            color: '#1A2742',
+            padding: '0.75rem 2rem',
+            fontSize: '0.7rem',
+            fontWeight: 700,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            textDecoration: 'none',
+          }}
+        >
+          View Properties
+        </a>
+      </div>
+
+      <div style={{ marginTop: '3rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ height: '1px', width: '3rem', background: '#D4AF37' }} />
+        <div style={{ height: '6px', width: '6px', background: '#D4AF37', transform: 'rotate(45deg)' }} />
+        <div style={{ height: '1px', width: '3rem', background: '#D4AF37' }} />
+      </div>
+    </main>
   );
 }

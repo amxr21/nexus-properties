@@ -88,7 +88,7 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                 {hasDetails && fCount > 0 && (
                   <Reveal delay={80}>
                     <div>
-                      <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('features')}</p>
+                      <h2 className="font-display text-[1.2rem] font-semibold text-navy mb-6">{tp('features')}</h2>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         {Array.from({ length: fCount }, (_, i) => (
                           <div key={i} className="flex items-start gap-3">
@@ -104,7 +104,7 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                 {hasDetails && aCount > 0 && (
                   <Reveal delay={120}>
                     <div>
-                      <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('amenities')}</p>
+                      <h2 className="font-display text-[1.2rem] font-semibold text-navy mb-6">{tp('amenities')}</h2>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         {Array.from({ length: aCount }, (_, i) => (
                           <div key={i} className="flex items-start gap-3">
@@ -120,7 +120,7 @@ export function ProjectPageClient({ titleKey, metaKey, bodyKey, imageAltKey, ima
                 {hasDetails && hCount > 0 && (
                   <Reveal delay={160}>
                     <div className="border border-line p-8">
-                      <p className="text-[8px] font-bold tracking-[0.3em] text-gold-500 uppercase mb-6">{tp('locationHighlights')}</p>
+                      <h2 className="font-display text-[1.2rem] font-semibold text-navy mb-6">{tp('locationHighlights')}</h2>
                       <div className="flex flex-col gap-3">
                         {Array.from({ length: hCount }, (_, i) => (
                           <div key={i} className="flex items-start gap-3">
