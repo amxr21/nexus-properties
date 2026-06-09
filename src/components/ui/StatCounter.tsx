@@ -48,8 +48,8 @@ export function StatCounter({ value, label }: StatCounterProps) {
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-2 px-6 py-4 text-center">
-      <span className="font-display text-[2.8rem] font-light leading-none text-navy">{display}</span>
-      <span className="text-[9px] font-bold tracking-[0.22em] text-charcoal/45 uppercase">{label}</span>
+      <span className="font-display text-5xl font-light leading-none text-navy">{display}</span>
+      <span className="text-xs font-bold tracking-[0.22em] text-charcoal/45 uppercase">{label}</span>
     </div>
   );
 }

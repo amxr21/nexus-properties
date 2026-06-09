@@ -6,7 +6,7 @@ interface FooterLinkListProps {
 export function FooterLinkList({ heading, items }: FooterLinkListProps) {
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="text-[8px] font-bold tracking-[0.28em] text-gold-500 uppercase">{heading}</h3>
+      <h3 className="text-xs font-bold tracking-[0.28em] text-gold-500 uppercase">{heading}</h3>
       <ul className="flex flex-col gap-1.5">
         {items.map(({ label, href = '#', external }) => (
           <li key={label}>

@@ -28,7 +28,7 @@ export function PageHero({ eyebrow, heading, sub }: PageHeroProps) {
 
       <Container className="relative z-10">
         <Reveal>
-          <span className="text-[10px] font-bold tracking-[0.32em] text-gold-500 uppercase">
+          <span className="text-sm font-bold tracking-[0.32em] text-gold-500 uppercase">
             {eyebrow}
           </span>
         </Reveal>

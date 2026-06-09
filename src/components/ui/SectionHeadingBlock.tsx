@@ -16,7 +16,7 @@ export function SectionHeadingBlock({
     <div className={cn('flex flex-col gap-4', center && 'items-center text-center', className)}>
       {eyebrow && (
         <span className={cn(
-          'text-[9px] font-bold tracking-[0.3em] uppercase',
+          'text-sm font-bold tracking-[0.3em] uppercase',
           light ? 'text-gold-400' : 'text-gold-500',
         )}>
           {eyebrow}
