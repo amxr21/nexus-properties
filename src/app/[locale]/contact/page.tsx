@@ -1,8 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { Container } from '@/components/ui/Container';
+import { Reveal } from '@/components/ui/Reveal';
+import { PageHero } from '@/components/ui/PageHero';
+import { getSiteSettings, type StrapiSiteSettings } from '@/lib/strapi';
 
 type SvgIconProps = { size?: number; className?: string };
 
@@ -43,12 +49,6 @@ function LinkedinIcon({ size = 15, className = '' }: SvgIconProps) {
   );
 }
 
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
-import { PageHero } from '@/components/ui/PageHero';
-
 function ContactInfo({ icon: Icon, heading, children }: {
   icon: React.ElementType;
   heading: string;
@@ -60,7 +60,7 @@ function ContactInfo({ icon: Icon, heading, children }: {
         <Icon size={15} className="text-gold-500" />
       </div>
       <div>
-        <p className="text-[8px] font-bold tracking-[0.25em] text-navy uppercase mb-1">{heading}</p>
+        <p className="text-xs font-bold tracking-[0.25em] text-navy uppercase mb-1">{heading}</p>
         <div className="text-[15px] text-charcoal/65 leading-relaxed">{children}</div>
       </div>
     </div>
@@ -71,6 +71,11 @@ export default function ContactPage() {
   const t = useTranslations('Contact');
   const locale = useLocale();
   const [submitted, setSubmitted] = useState(false);
+  const [settings, setSettings] = useState<StrapiSiteSettings | null>(null);
+
+  useEffect(() => {
+    getSiteSettings(locale).then(setSettings).catch(() => setSettings(null));
+  }, [locale]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -78,7 +83,24 @@ export default function ContactPage() {
   }
 
   const inputClass = "w-full border border-line bg-white px-4 py-3 text-[15px] text-charcoal placeholder:text-charcoal/30 outline-none transition-colors focus:border-navy";
-  const labelClass = "block text-[8px] font-bold tracking-[0.22em] text-navy uppercase mb-2";
+  const labelClass = "block text-xs font-bold tracking-[0.22em] text-navy uppercase mb-2";
+
+  const address = settings?.address ?? t('address');
+  const phone   = settings?.phone   ?? t('phone');
+  const email   = settings?.email   ?? t('email');
+  const hours   = [
+    settings?.hours1 ?? t('hours1'),
+    settings?.hours2 ?? t('hours2'),
+    settings?.hours3 ?? t('hours3'),
+    settings?.hours4 ?? t('hours4'),
+  ];
+
+  const socials = [
+    { Icon: InstagramIcon, href: settings?.instagramUrl },
+    { Icon: FacebookIcon,  href: settings?.facebookUrl  },
+    { Icon: YoutubeIcon,   href: settings?.youtubeUrl   },
+    { Icon: LinkedinIcon,  href: settings?.linkedinUrl  },
+  ].filter(s => s.href);
 
   return (
     <>
@@ -91,7 +113,7 @@ export default function ContactPage() {
           <Container>
             <div className="grid grid-cols-1 gap-16 lg:grid-cols-5">
 
-              {/* Form — 3 cols */}
+              {/* Form */}
               <div className="lg:col-span-3">
                 <Reveal>
                   {submitted ? (
@@ -126,7 +148,7 @@ export default function ContactPage() {
                       </div>
                       <button
                         type="submit"
-                        className="self-start bg-navy px-10 py-4 text-[9px] font-bold tracking-[0.28em] text-white uppercase transition-colors hover:bg-navy/85"
+                        className="self-start bg-navy px-10 py-4 text-xs font-bold tracking-[0.28em] text-white uppercase transition-colors hover:bg-navy/85"
                       >
                         {t('formSubmit')}
                       </button>
@@ -135,10 +157,8 @@ export default function ContactPage() {
                 </Reveal>
               </div>
 
-              {/* Info — 2 cols */}
+              {/* Info */}
               <div className="lg:col-span-2 flex flex-col gap-8">
-
-                {/* Decorative line */}
                 <div className="flex items-center gap-3">
                   <div className="h-px flex-1 bg-line" />
                   <div className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
@@ -146,61 +166,55 @@ export default function ContactPage() {
 
                 <Reveal direction="left">
                   <ContactInfo icon={MapPin} heading={t('officeHeading')}>
-                    <p>{t('address')}</p>
+                    <p>{address}</p>
                   </ContactInfo>
                 </Reveal>
 
                 <Reveal direction="left" delay={80}>
                   <ContactInfo icon={Clock} heading={t('hoursHeading')}>
                     <ul className="flex flex-col gap-0.5">
-                      {(['hours1','hours2','hours3','hours4'] as const).map(k => (
-                        <li key={k}>{t(k)}</li>
-                      ))}
+                      {hours.map((h, i) => <li key={i}>{h}</li>)}
                     </ul>
                   </ContactInfo>
                 </Reveal>
 
                 <Reveal direction="left" delay={160}>
                   <ContactInfo icon={Phone} heading={t('phoneHeading')}>
-                    <a href={`tel:${t('phone')}`} className="hover:text-navy transition-colors">{t('phone')}</a>
+                    <a href={`tel:${phone}`} className="hover:text-navy transition-colors">{phone}</a>
                   </ContactInfo>
                 </Reveal>
 
                 <Reveal direction="left" delay={240}>
                   <ContactInfo icon={Mail} heading={t('emailHeading')}>
-                    <a href={`mailto:${t('email')}`} className="hover:text-navy transition-colors">{t('email')}</a>
+                    <a href={`mailto:${email}`} className="hover:text-navy transition-colors">{email}</a>
                   </ContactInfo>
                 </Reveal>
 
-                <Reveal direction="left" delay={320}>
-                  <div className="flex gap-3 pt-2">
-                    {[
-                      { Icon: InstagramIcon, href: 'https://instagram.com/nexuspropertiesatx' },
-                      { Icon: FacebookIcon, href: 'https://facebook.com/NexusPropertiesAustin' },
-                      { Icon: YoutubeIcon,   href: 'https://youtube.com/@NexusPropertiesAustin' },
-                      { Icon: LinkedinIcon,  href: 'https://linkedin.com/company/nexus-properties' },
-                    ].map(({ Icon, href }) => (
-                      <a
-                        key={href}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center border border-line text-charcoal/40 transition-colors hover:border-navy hover:text-navy"
-                      >
-                        <Icon size={14} />
-                      </a>
-                    ))}
-                  </div>
-                </Reveal>
+                {socials.length > 0 && (
+                  <Reveal direction="left" delay={320}>
+                    <div className="flex gap-3 pt-2">
+                      {socials.map(({ Icon, href }) => (
+                        <a
+                          key={href}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-9 w-9 items-center justify-center border border-line text-charcoal/40 transition-colors hover:border-navy hover:text-navy"
+                        >
+                          <Icon size={14} />
+                        </a>
+                      ))}
+                    </div>
+                  </Reveal>
+                )}
               </div>
             </div>
 
-            {/* Map placeholder */}
             <Reveal className="mt-20">
               <div className="h-72 w-full bg-gray flex items-center justify-center border border-line md:h-96">
                 <div className="flex flex-col items-center gap-2 text-charcoal/30">
                   <MapPin size={28} />
-                  <p className="text-[10px] font-bold tracking-[0.22em] uppercase">1234 Lamar Blvd, Austin, TX</p>
+                  <p className="text-[10px] font-bold tracking-[0.22em] uppercase">{address}</p>
                 </div>
               </div>
             </Reveal>
