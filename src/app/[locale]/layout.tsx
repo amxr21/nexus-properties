@@ -44,6 +44,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
       className={`${raleway.variable} ${ibmPlexArabic.variable}`}
+      suppressHydrationWarning
     >
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>

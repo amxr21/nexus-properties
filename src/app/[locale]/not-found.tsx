@@ -2,7 +2,8 @@ export default function NotFound() {
   return (
     <main
       style={{
-        minHeight: '100vh',
+        height: '100vh',
+        overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
