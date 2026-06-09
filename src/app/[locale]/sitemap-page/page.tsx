@@ -1,15 +1,22 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/ui/Container';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
+import { getProjects, type StrapiProject } from '@/lib/strapi';
 
 export default function SitemapPage() {
   const t = useTranslations('SitemapPage');
   const locale = useLocale();
+  const [projects, setProjects] = useState<StrapiProject[]>([]);
+
+  useEffect(() => {
+    getProjects(locale).then(setProjects).catch(() => setProjects([]));
+  }, [locale]);
 
   const sections = [
     {
@@ -25,15 +32,10 @@ export default function SitemapPage() {
     },
     {
       heading: t('projectsHeading'),
-      links: [
-        { label: 'Lamar Collective',   href: `/${locale}/projects/lamar-collective` },
-        { label: 'Eastside Yard',      href: `/${locale}/projects/eastside-yard` },
-        { label: 'Domain North Tower', href: `/${locale}/projects/domain-north-tower` },
-        { label: 'Congress Plaza',     href: `/${locale}/projects/congress-plaza` },
-        { label: 'Barton Heights',     href: `/${locale}/projects/barton-heights` },
-        { label: 'Rainey Lofts',       href: `/${locale}/projects/rainey-lofts` },
-        { label: 'Mueller Commons',    href: `/${locale}/projects/mueller-commons` },
-      ],
+      links: projects.map(p => ({
+        label: p.title,
+        href: `/${locale}/projects/${p.slug}`,
+      })),
     },
     {
       heading: t('insightsHeading'),
@@ -66,14 +68,11 @@ export default function SitemapPage() {
               {sections.map(({ heading: h, links }, i) => (
                 <Reveal key={h} delay={i * 60}>
                   <div>
-                    <p className="mb-5 text-[8px] font-bold tracking-[0.28em] text-gold-500 uppercase">{h}</p>
+                    <p className="mb-5 text-xs font-bold tracking-[0.28em] text-gold-500 uppercase">{h}</p>
                     <ul className="flex flex-col gap-3">
                       {links.map(({ label, href }) => (
                         <li key={href}>
-                          <a
-                            href={href}
-                            className="text-[14px] text-charcoal/65 hover:text-navy transition-colors"
-                          >
+                          <a href={href} className="text-[14px] text-charcoal/65 hover:text-navy transition-colors">
                             {label}
                           </a>
                         </li>

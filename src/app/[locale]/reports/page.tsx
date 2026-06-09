@@ -37,13 +37,13 @@ export default function ReportsPage() {
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-line text-gold-500">
                         <FileText size={18} />
                       </div>
-                      <span className="text-[8px] font-bold tracking-[0.24em] text-charcoal/35 uppercase">{quarter}</span>
+                      <span className="text-xs font-bold tracking-[0.24em] text-charcoal/35 uppercase">{quarter}</span>
                     </div>
                     <div>
                       <h3 className="font-display text-[1rem] font-light text-navy leading-snug">{title}</h3>
                       <p className="mt-1 text-[11px] text-charcoal/40">{pages}</p>
                     </div>
-                    <button className="mt-auto inline-flex items-center gap-2 text-[9px] font-bold tracking-[0.2em] text-navy uppercase hover:text-gold-500 transition-colors">
+                    <button className="mt-auto inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-navy uppercase hover:text-gold-500 transition-colors">
                       <Download size={12} />
                       {t('downloadBtn')}
                     </button>
@@ -59,7 +59,7 @@ export default function ReportsPage() {
                 <p className="max-w-sm text-[15px] text-charcoal/55 leading-relaxed">{t('ctaSub')}</p>
                 <a
                   href={`/${locale}/contact`}
-                  className="bg-navy px-10 py-4 text-[9px] font-bold tracking-[0.28em] text-white uppercase hover:bg-navy/85 transition-colors"
+                  className="bg-navy px-10 py-4 text-xs font-bold tracking-[0.28em] text-white uppercase hover:bg-navy/85 transition-colors"
                 >
                   {t('ctaBtn')}
                 </a>
