@@ -1,41 +1,27 @@
 import { notFound } from 'next/navigation';
-import { ongoingProjects, completedProjects } from '@/lib/content';
+import { getProject } from '@/lib/strapi';
 import { ProjectPageClient } from './ProjectPageClient';
 
 export const dynamic = 'force-dynamic';
-
-const allProjects = [...ongoingProjects, ...completedProjects];
-
-const slugsWithDetails = new Set([
-  'lamar-collective',
-  'eastside-yard',
-  'domain-north-tower',
-  'congress-plaza',
-  'barton-heights',
-  'rainey-lofts',
-  'mueller-commons',
-]);
 
 export default async function ProjectPage({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const project = allProjects.find((p) => p.slug === slug);
+  const { locale, slug } = await params;
+  const project = await getProject(slug, locale).catch(() => null);
   if (!project) notFound();
 
-  const strip = (key: string) => key.replace(/^OngoingProjects\./, '');
+  const imageSrc = project.image?.url
+    ? (project.image.url.startsWith('http') ? project.image.url : `${process.env.NEXT_PUBLIC_STRAPI_URL}${project.image.url}`)
+    : '/images/project image.jpg';
 
   return (
     <ProjectPageClient
-      titleKey={strip(project.titleKey)}
-      metaKey={strip(project.metaKey)}
-      bodyKey={strip(project.bodyKey)}
-      imageAltKey={strip(project.imageAltKey)}
-      image={project.image}
+      strapiProject={project}
+      image={imageSrc}
       slug={slug}
-      hasDetails={slugsWithDetails.has(slug)}
     />
   );
 }
