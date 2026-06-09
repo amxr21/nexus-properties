@@ -19,7 +19,7 @@ function NavLink({ href, label, onClick, scrolled }: {
       href={href}
       onClick={onClick}
       className={cn(
-        'text-[10px] font-semibold tracking-[0.22em] uppercase transition-colors whitespace-nowrap',
+        'text-xs font-light tracking-[0.22em] uppercase transition-colors whitespace-nowrap',
         scrolled
           ? 'text-navy/65 hover:text-navy'
           : 'text-white/80 hover:text-white'
@@ -60,7 +60,7 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none">
       <div className={cn(
-        'pointer-events-auto w-[90%] max-w-342 rounded-2xl transition-all duration-500',
+        'pointer-events-auto w-[90%] max-w-342 rounded-xl transition-all duration-500',
         scrolled
           ? 'bg-white/90 backdrop-blur-md shadow-lg shadow-black/8'
           : 'bg-white/5'
@@ -120,8 +120,11 @@ export function Header() {
         role="dialog"
         aria-modal="true"
         className={cn(
-          'pointer-events-auto fixed inset-0 z-40 flex flex-col bg-navy transition-transform duration-300 md:hidden',
-          menuOpen ? 'translate-x-0' : 'translate-x-full',
+          'fixed inset-0 z-9999 flex flex-col bg-navy md:hidden',
+          'transition-all duration-300 ease-in-out',
+          menuOpen
+            ? 'opacity-100 translate-x-0 pointer-events-auto'
+            : 'opacity-0 translate-x-4 pointer-events-none',
         )}
       >
         <div className="flex h-14 items-center justify-between px-6 border-b border-white/10">
