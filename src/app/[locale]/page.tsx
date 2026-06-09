@@ -9,21 +9,32 @@ import { SophisticationBanner } from '@/components/sections/SophisticationBanner
 import { AboutComplete } from '@/components/sections/AboutComplete';
 import { Services } from '@/components/sections/Services';
 import { OngoingProjects } from '@/components/sections/OngoingProjects';
+import { getHomepage, getProjects } from '@/lib/strapi';
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const [homepage, allProjects] = await Promise.all([
+    getHomepage(locale).catch(() => null),
+    getProjects(locale).catch(() => []),
+  ]);
+
   return (
     <>
       <Header />
       <main>
-        <Hero />
-        <GalleryStrip />
-        <WhoWeAre />
-        <VisionMessage />
-        <Team />
-        <SophisticationBanner />
+        <Hero homepage={homepage} locale={locale} />
+        <GalleryStrip homepage={homepage} />
+        <WhoWeAre homepage={homepage} />
+        <VisionMessage homepage={homepage} />
+        <Team locale={locale} />
+        <SophisticationBanner homepage={homepage} />
         <AboutComplete />
-        <Services />
-        <OngoingProjects />
+        <Services locale={locale} homepage={homepage} />
+        <OngoingProjects allProjects={allProjects} locale={locale} />
       </main>
       <Footer />
     </>
