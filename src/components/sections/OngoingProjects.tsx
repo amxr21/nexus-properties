@@ -1,60 +1,54 @@
 'use client';
 
 import Image from 'next/image';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
-import { ongoingProjects, completedProjects } from '@/lib/content';
+import { getMediaUrl, type StrapiProject } from '@/lib/strapi';
 import { cn } from '@/lib/utils';
 
 type Tab = 'ongoing' | 'completed';
-type Project = typeof ongoingProjects[number] | typeof completedProjects[number];
 
 function ProjectSlide({
   project,
   exploreLabel,
   locale,
-  t,
 }: {
-  project: Project;
+  project: StrapiProject;
   exploreLabel: string;
   locale: string;
-  t: ReturnType<typeof useTranslations<'OngoingProjects'>>;
 }) {
-  const ns = (key: string) =>
-    t(key.replace('OngoingProjects.', '') as Parameters<typeof t>[0]);
+  const imageSrc = getMediaUrl(project.image?.url) ?? '/images/project image.jpg';
 
   return (
     <div className="w-full">
-      {/* Image — short strip, ~30vh */}
       <div className="relative w-full overflow-hidden" style={{ height: '32vh', minHeight: '200px', maxHeight: '320px' }}>
         <Image
-          src={project.image}
-          alt={ns(project.imageAltKey)}
+          src={imageSrc}
+          alt={project.imageAlt || project.title}
           fill
           className="object-cover object-center"
           sizes="(max-width: 1200px) 100vw, 1200px"
         />
       </div>
 
-      {/* Card body */}
       <div className="flex flex-col gap-4 pt-6 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <p className="text-[9px] font-bold tracking-[0.22em] text-gold-500 uppercase">
-            {ns(project.metaKey)}
+          <p className="text-xs font-bold tracking-[0.22em] text-gold-500 uppercase">
+            {project.meta}
           </p>
           <h3 className="font-display text-[1.5rem] font-light text-navy md:text-[1.9rem]">
-            {ns(project.titleKey)}
+            {project.title}
           </h3>
           <p className="text-[13px] leading-[1.85] text-charcoal/55 mt-1">
-            {ns(project.briefKey)}
+            {project.brief}
           </p>
         </div>
 
         <a
           href={`/${locale}/projects/${project.slug}`}
-          className="group inline-flex shrink-0 items-center gap-2 border border-navy px-6 py-3 text-[9px] font-bold tracking-[0.22em] text-navy uppercase transition-colors hover:bg-navy hover:text-white"
+          className="group inline-flex shrink-0 items-center gap-2 border border-navy px-6 py-3 text-xs font-bold tracking-[0.22em] text-navy uppercase transition-colors hover:bg-navy hover:text-white"
         >
           {exploreLabel}
           <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
@@ -64,18 +58,20 @@ function ProjectSlide({
   );
 }
 
-export function OngoingProjects() {
+export function OngoingProjects({
+  allProjects,
+  locale,
+}: {
+  allProjects: StrapiProject[];
+  locale: string;
+}) {
   const t = useTranslations('OngoingProjects');
-  const locale = useLocale();
   const isRTL = locale === 'ar';
 
   const [activeTab, setActiveTab] = useState<Tab>('ongoing');
   const [index, setIndex] = useState(0);
 
-  const projects = activeTab === 'ongoing'
-    ? (ongoingProjects as unknown as Project[])
-    : (completedProjects as unknown as Project[]);
-
+  const projects = allProjects.filter(p => p.status === activeTab);
   const total = projects.length;
 
   function goTo(next: number) {
@@ -90,16 +86,19 @@ export function OngoingProjects() {
   const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
   const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
+  if (allProjects.length === 0) return null;
+
+  const current = projects[index];
+
   return (
     <section id="properties" aria-label="Projects" className="bg-white py-20 md:py-28">
       <Container>
-        {/* Tab header + arrows */}
         <div className="mb-10 flex items-end justify-between border-b border-line pb-0">
           <div className="flex items-end">
             <button
               onClick={() => handleTabChange('ongoing')}
               className={cn(
-                'pb-3 text-[9px] font-bold tracking-[0.28em] uppercase transition-colors',
+                'pb-3 text-xs font-bold tracking-[0.28em] uppercase transition-colors',
                 activeTab === 'ongoing'
                   ? 'border-b-2 border-navy text-navy'
                   : 'text-charcoal/30 hover:text-charcoal/60'
@@ -110,7 +109,7 @@ export function OngoingProjects() {
             <button
               onClick={() => handleTabChange('completed')}
               className={cn(
-                'ms-8 pb-3 text-[9px] font-bold tracking-[0.28em] uppercase transition-colors',
+                'ms-8 pb-3 text-xs font-bold tracking-[0.28em] uppercase transition-colors',
                 activeTab === 'completed'
                   ? 'border-b-2 border-navy text-navy'
                   : 'text-charcoal/30 hover:text-charcoal/60'
@@ -120,9 +119,8 @@ export function OngoingProjects() {
             </button>
           </div>
 
-          {/* Arrow controls + counter */}
           <div className="flex items-center gap-3 pb-3">
-            <span className="text-[9px] font-semibold tracking-widest text-charcoal/35">
+            <span className="text-xs font-semibold tracking-widest text-charcoal/35">
               {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
             </span>
             <button
@@ -142,15 +140,14 @@ export function OngoingProjects() {
           </div>
         </div>
 
-        {/* Active slide */}
-        <ProjectSlide
-          project={projects[index]}
-          exploreLabel={t('exploreBtn')}
-          locale={locale}
-          t={t}
-        />
+        {current && (
+          <ProjectSlide
+            project={current}
+            exploreLabel={t('exploreBtn')}
+            locale={locale}
+          />
+        )}
 
-        {/* Dot indicators */}
         <div className="mt-6 flex items-center gap-2">
           {projects.map((_, i) => (
             <button

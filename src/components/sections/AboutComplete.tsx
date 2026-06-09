@@ -4,10 +4,18 @@ import { useTranslations } from 'next-intl';
 import { Container } from '@/components/ui/Container';
 import { SectionHeadingBlock } from '@/components/ui/SectionHeadingBlock';
 import { StatCounter } from '@/components/ui/StatCounter';
-import { aboutStats } from '@/lib/content';
 
+// About section stats and text are static brand content kept in next-intl.
+// They describe fixed company facts (agent count, years of experience).
 export function AboutComplete() {
   const t = useTranslations();
+
+  const aboutStats = [
+    { value: t('About.stat1Value'), label: t('About.stat1Label') },
+    { value: t('About.stat2Value'), label: t('About.stat2Label') },
+    { value: t('About.stat3Value'), label: t('About.stat3Label') },
+    { value: t('About.stat4Value'), label: t('About.stat4Label') },
+  ];
 
   return (
     <section id="about" aria-label="About Nexus Properties" className="bg-gray py-20 md:py-28">
@@ -24,19 +32,15 @@ export function AboutComplete() {
           </div>
 
           <div className="flex-1 grid grid-cols-2 gap-x-6 gap-y-10">
-            {aboutStats.map(({ id, valueKey, labelKey }) => (
-              <StatCounter
-                key={id}
-                value={t(valueKey as Parameters<typeof t>[0])}
-                label={t(labelKey as Parameters<typeof t>[0])}
-              />
+            {aboutStats.map((s, i) => (
+              <StatCounter key={i} value={s.value} label={s.label} />
             ))}
           </div>
         </div>
 
         <div className="mt-20 flex items-center gap-8">
           <div className="h-px flex-1 bg-charcoal/15" />
-          <p className="text-[9px] font-bold tracking-[0.28em] text-gold-500 uppercase whitespace-nowrap">
+          <p className="text-sm font-bold tracking-[0.28em] text-gold-500 uppercase whitespace-nowrap">
             {t('About.experienceLine')}
           </p>
           <div className="h-px flex-1 bg-charcoal/15" />

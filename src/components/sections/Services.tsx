@@ -1,17 +1,34 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Container } from '@/components/ui/Container';
 import { SectionHeadingBlock } from '@/components/ui/SectionHeadingBlock';
 import { OverlayImage } from '@/components/ui/OverlayImage';
-import { serviceCards, images } from '@/lib/content';
+import { getMediaUrl, type StrapiHomepage } from '@/lib/strapi';
 
-export function Services() {
-  const t = useTranslations();
+const SERVICES_BG = '/images/showoff section image 2.jpg';
+
+const SERVICE_CARD_KEYS = [
+  { titleKey: 'Services.card1Title', taglineKey: 'Services.card1Tagline' },
+  { titleKey: 'Services.card2Title', taglineKey: 'Services.card2Tagline' },
+  { titleKey: 'Services.card3Title', taglineKey: 'Services.card3Tagline' },
+  { titleKey: 'Services.card4Title', taglineKey: 'Services.card4Tagline' },
+] as const;
+
+export async function Services({
+  locale: _locale,
+  homepage,
+}: {
+  locale: string;
+  homepage: StrapiHomepage | null;
+}) {
+  const t = await getTranslations();
+
+  const bgSrc = homepage?.heroImages?.[1]
+    ? (getMediaUrl((homepage.heroImages[1] as unknown as { url: string }).url) ?? SERVICES_BG)
+    : SERVICES_BG;
 
   return (
     <section aria-label="Our services" className="relative overflow-hidden py-24 md:py-32">
-      <OverlayImage src={images.servicesBg} />
+      <OverlayImage src={bgSrc} />
 
       <div className="relative z-10">
         <Container>
@@ -25,9 +42,9 @@ export function Services() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {serviceCards.map(({ id, titleKey, taglineKey }, i) => (
+            {SERVICE_CARD_KEYS.map(({ titleKey, taglineKey }, i) => (
               <article
-                key={id}
+                key={i}
                 className="group relative flex flex-col gap-6 border border-white/10 p-8 transition-colors duration-300 hover:bg-white/5 hover:border-white/20"
               >
                 <span aria-hidden="true" className="absolute right-4 top-3 font-display text-[6rem] font-bold leading-none text-white/4 select-none">

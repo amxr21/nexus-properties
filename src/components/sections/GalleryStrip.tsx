@@ -1,8 +1,14 @@
-'use client';
-
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import { images } from '@/lib/content';
+import { getTranslations } from 'next-intl/server';
+import { getMediaUrl, type StrapiHomepage } from '@/lib/strapi';
+
+const FALLBACK_GALLERY = [
+  '/images/hero-card 1.jpg',
+  '/images/hero-card 2.jpg',
+  '/images/hero-card 3.jpg',
+  '/images/hero-card 4.jpg',
+  '/images/hero-card 5.jpg',
+];
 
 const altKeys = [
   'Gallery.image1Alt',
@@ -12,8 +18,12 @@ const altKeys = [
   'Gallery.image5Alt',
 ] as const;
 
-export function GalleryStrip() {
-  const t = useTranslations();
+export async function GalleryStrip({ homepage }: { homepage: StrapiHomepage | null }) {
+  const t = await getTranslations();
+
+  const galleryImages: string[] = homepage?.galleryImages?.length
+    ? homepage.galleryImages.map((img: { url: string }) => getMediaUrl(img.url) ?? '')
+    : FALLBACK_GALLERY;
 
   return (
     <div
@@ -21,10 +31,10 @@ export function GalleryStrip() {
       className="relative z-20 -mt-24 mx-auto w-full px-6 flex h-48 sm:h-60 md:h-112 gap-3 md:gap-5"
       style={{ maxWidth: '1368px' }}
     >
-      {images.gallery.map((src, i) => (
-        <div key={src} className="relative flex-1 overflow-hidden">
+      {galleryImages.slice(0, 5).map((src, i) => (
+        <div key={i} className="relative flex-1 overflow-hidden">
           <Image
-            src={src}
+            src={src || FALLBACK_GALLERY[i]}
             alt={t(altKeys[i])}
             fill
             className="object-cover object-center transition-transform duration-700 hover:scale-[1.05]"
