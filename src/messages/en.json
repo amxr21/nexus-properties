@@ -162,7 +162,9 @@
     "post5Title": "LEED Certification: What It Means for Your Investment",
     "post6Tag": "Neighborhood",
     "post6Date": "Dec 2024",
-    "post6Title": "Rainey Street: Austin's Most Vibrant Micro-Neighborhood"
+    "post6Title": "Rainey Street: Austin's Most Vibrant Micro-Neighborhood",
+    "backToBlog": "Back to Blog",
+    "notFound": "Article not found"
   },
   "PropertiesPage": {
     "eyebrow": "Our Portfolio",
@@ -273,7 +275,9 @@
     "s8Step4": "Closing coordination and post-close support",
     "ctaHeading": "Not Sure Where to Start?",
     "ctaSub": "Our advisors are here to understand your goals and match you with exactly the right service.",
-    "ctaButton": "Talk to an Advisor"
+    "ctaButton": "Talk to an Advisor",
+    "backToServices": "Back to Services",
+    "notFoundService": "Service not found"
   },
   "Contact": {
     "eyebrow": "Get In Touch",
