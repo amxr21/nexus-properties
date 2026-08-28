@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Raleway, IBM_Plex_Sans_Arabic } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
@@ -18,6 +19,10 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: '--font-ibm-plex-arabic',
   display: 'swap',
 });
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = {
   title: 'Nexus Properties',
@@ -37,7 +42,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  setRequestLocale(locale);
+
   const messages = (await import(`@/messages/${locale}.json`)).default;
+
 
   return (
     <html

@@ -10,6 +10,7 @@ import { AboutComplete } from '@/components/sections/AboutComplete';
 import { Services } from '@/components/sections/Services';
 import { OngoingProjects } from '@/components/sections/OngoingProjects';
 import { getHomepage, getProjects } from '@/lib/strapi';
+import { setRequestLocale } from 'next-intl/server';
 
 export default async function Home({
   params,
@@ -17,6 +18,8 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+
   const [homepage, allProjects] = await Promise.all([
     getHomepage(locale).catch(() => null),
     getProjects(locale).catch(() => []),

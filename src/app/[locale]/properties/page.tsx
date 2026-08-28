@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { PageHero } from '@/components/ui/PageHero';
 import { getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { getProjects } from '@/lib/strapi';
 import { PropertiesClient } from './PropertiesClient';
 
@@ -11,6 +12,8 @@ export default async function PropertiesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+
   const [t, projects] = await Promise.all([
     getTranslations('PropertiesPage'),
     getProjects(locale).catch(() => []),

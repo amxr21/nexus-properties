@@ -1,8 +1,18 @@
 import { notFound } from 'next/navigation';
-import { getProject } from '@/lib/strapi';
+import { getProject, getProjects } from '@/lib/strapi';
+import { routing } from '@/i18n/routing';
 import { ProjectPageClient } from './ProjectPageClient';
 
-export const dynamic = 'force-dynamic';
+export async function generateStaticParams() {
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of routing.locales) {
+    const projects = await getProjects(locale).catch(() => []);
+    for (const project of projects) {
+      params.push({ locale, slug: project.slug });
+    }
+  }
+  return params;
+}
 
 export default async function ProjectPage({
   params,
