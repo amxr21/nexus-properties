@@ -10,8 +10,18 @@ WORKDIR /app
 # NEXT_PUBLIC_* is inlined into the bundle at build time, so it must be
 # present as a build arg — a runtime env var would be ignored and the site
 # would ship with no CMS URL.
+#
+# Coolify only forwards a variable as --build-arg when it is marked "Build
+# Variable" in the app's Environment Variables tab. If it is not, this is
+# silently empty and the bundle falls back to the hardcoded URL in
+# src/lib/strapi.ts, so fail here instead of shipping a mis-pointed site.
 ARG NEXT_PUBLIC_STRAPI_URL
 ENV NEXT_PUBLIC_STRAPI_URL=$NEXT_PUBLIC_STRAPI_URL
+RUN test -n "$NEXT_PUBLIC_STRAPI_URL" || { \
+      echo "ERROR: NEXT_PUBLIC_STRAPI_URL is empty."; \
+      echo "In Coolify, tick 'Build Variable' on it, then redeploy."; \
+      exit 1; \
+    }
 
 RUN corepack enable && corepack prepare pnpm@11.5.0 --activate
 

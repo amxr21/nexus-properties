@@ -6,17 +6,45 @@ const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
 type StrapiResponse<T> = { data: T; meta?: unknown };
 
+// Prerendering runs these serially on a 1 vCPU box. Without a timeout a
+// single hung socket blocks `next build` forever — the build never fails,
+// it just stops, and CI kills it at its own job timeout with no useful log.
+const FETCH_TIMEOUT_MS = 20_000;
+const FETCH_RETRIES = 2;
+
 async function fetchStrapi<T>(path: string): Promise<T> {
   const headers: HeadersInit = { 'Content-Type': 'application/json' };
   if (STRAPI_TOKEN) headers['Authorization'] = `Bearer ${STRAPI_TOKEN}`;
 
-  const res = await fetch(`${STRAPI_URL}/api${path}`, {
-    headers,
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) throw new Error(`Strapi fetch failed: ${path} (${res.status})`);
-  const json: StrapiResponse<T> = await res.json();
-  return json.data;
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt <= FETCH_RETRIES; attempt++) {
+    // Strapi Cloud's free tier cold-starts; the first request after idle can
+    // take ~19s, so back off rather than giving up on a slow-but-alive CMS.
+    if (attempt > 0) {
+      await new Promise((r) => setTimeout(r, 2_000 * attempt));
+    }
+
+    try {
+      const res = await fetch(`${STRAPI_URL}/api${path}`, {
+        headers,
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+        next: { revalidate: 60 },
+      });
+      if (!res.ok) {
+        throw new Error(`Strapi fetch failed: ${path} (${res.status})`);
+      }
+      const json: StrapiResponse<T> = await res.json();
+      return json.data;
+    } catch (err) {
+      lastError = err;
+    }
+  }
+
+  throw new Error(
+    `Strapi fetch failed after ${FETCH_RETRIES + 1} attempts: ${path}`,
+    { cause: lastError },
+  );
 }
 
 // ── Types ────────────────────────────────────────────────────────────────────
