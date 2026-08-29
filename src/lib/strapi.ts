@@ -1,6 +1,10 @@
-const STRAPI_URL =
+// Trailing slashes are stripped: requests are built as `${STRAPI_URL}/api...`,
+// so a configured value ending in '/' would produce '//api/...', which Strapi
+// rejects with a 400 on every endpoint.
+const STRAPI_URL = (
   process.env.NEXT_PUBLIC_STRAPI_URL ??
-  'https://beneficial-darling-7eb6ac0811.strapiapp.com';
+  'https://beneficial-darling-7eb6ac0811.strapiapp.com'
+).replace(/\/+$/, '');
 
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
